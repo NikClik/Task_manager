@@ -1,0 +1,19 @@
+<p style="float: left; position: absolute; top: 6.5%; left: 7%; font-size: 1.7vw; color: white;">Меню</p>
+    <nav role="navigation">
+        <div id="menuToggle">
+        <input type="checkbox" />
+        <span></span>
+        <span></span>
+        <span></span>
+            <ul id="menu">
+                <a href="{% url 'main_page' %}"><li>Главная страница</li></a>
+                <a href="{% url 'plan_on_day' %}"><li>План на день</li></a>
+                <a href="{% url 'all_tasks'%}"><li>Задачи</li></a>
+                <div class="secondMenu" style="color: black">
+                    Здарвствуйте, {{ user_login }}!
+                    <a href="{% url 'change_password' %}" style="float: left;">Сменить пароль </a>
+                    <a href="{% url 'log_out' %}" style="float: left;">/ Выйти</a>
+                </div>
+            </ul>
+        </div>
+    </nav>

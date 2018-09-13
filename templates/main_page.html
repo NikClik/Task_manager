@@ -1,0 +1,96 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" style="width: 100%; height: 100%; background: black">
+<head>
+    <meta charset="UTF-8">
+    <title>Главная страница</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'css/main_page.css' %}">
+</head>
+<style>
+    label{
+        color: white;
+    }
+    input{
+        color: black;
+    }
+    select{
+        color: black;
+    }
+    button{
+        color: black;
+    }
+</style>
+<body style="width: 100%; height: 80%; color: white; background: black; font-family: 'Franklin Gothic Medium';">
+    <img src="http://ourtaskmanager.com/images/our%20task%20manager%20%20logo.png" width="25%;" style="margin-right: 3%; margin-top: 2%; float: right;">
+
+    {% include 'menu.html' %}
+
+    <h3 style="text-align: center; margin-top: 7%;">Статистика за время использование приложения:</h3>
+    <div style="float: left; color: black; margin: 1%; padding: 1%; width: 23%; height: 17%; background-color: white; border-radius: 0.5vw;">
+        <p style="float:left; font-weight: bold; font-size: 2vw; margin-bottom: 0;">{{ count_of_task }}</p>
+        <br>
+        <p style="position:absolute; font-size: 1.2vw; margin-top: 1.5%;">Создано задач</p>
+    </div>
+    <div style="float: left; color: black; margin: 1%; padding: 1%; width: 23%; height: 17%; background-color: white; border-radius: 0.5vw;">
+        <p style="float:left; font-weight: bold; font-size: 2vw; margin-bottom: 0;">{{ count_of_complete_task }}</p>
+        <br>
+        <p style="position:absolute; font-size: 1.2vw; margin-top: 1.5%;">Задач выполнено</p>
+    </div>
+    <div style="float: left; color: black; margin: 1%; padding: 1%; width: 23%; height: 17%; background-color: white; border-radius: 0.5vw;">
+        <p style="float:left; font-weight: bold; font-size: 2vw; margin-bottom: 0;">{{ count_of_not_complete_task }}</p>
+        <br>
+        <p style="position:absolute; font-size: 1.2vw; margin-top: 1.5%;">Задач не выполнено</p>
+    </div>
+    <div style="float: left; color: black; margin: 1%; padding: 1%; width: 23%; height: 17%; background-color: white; border-radius: 0.5vw;">
+        <p style="float:left; font-weight: bold; font-size: 2vw; margin-bottom: 0;">{{ count_of_in_progress_task }}</p>
+        <br>
+        <p style="position:absolute; font-size: 1.2vw; margin-top: 1.5%;">Задач ожидают выполнения</p>
+    </div>
+    <h3 style="text-align: center; margin-top: 15%;">Оповещения:</h3>
+    <div style="float: left; color: black; width: 30%; height: 50%; background-color: white; margin: 3%; margin-right: 1%; margin-left: 1%;border-radius: 0.5vw;">
+        <h4 style="text-align: center; border-bottom: 2px solid black;">Задания на сегодня</h4>
+        <ul>
+            {% for task in tasks_today %}
+            <li>{{ task }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div style="float: left; color: black; width: 30%; height: 50%; background-color: white; margin: 3%; margin-right: 1%;border-radius: 0.5vw;">
+        <h4 style="text-align: center; border-bottom: 2px solid black;">Задания на неделю</h4>
+        <ul>
+            {% for task in tasks_week %}
+            <li>{{ task }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div style="float: left; color: black; width: 30%; height: 50%; background-color: white; margin: 3%; margin-right: 1%; border-radius: 0.5vw;">
+        <h4 style="text-align: center; border-bottom: 2px solid black;">Задания на месяц</h4>
+        <ul>
+            {% for task in tasks_mounth %}
+            <li>{{ task }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <ul class="ul_meni">
+        <li id="text">
+            <p style="float: left; font-weight: bold; font-size: 1.2vw; width: 90%;">{{ message_header }}</p>
+            <button type="button" class="btn btn-default btn-sm" style="position: fixed; top: 2%; right: 2%; float: right;"  onclick="Close(this)">
+            <span class="glyphicon glyphicon-remove"></span>
+            </button>
+            <p style="width: 100%; float: left;">
+                {{ message }}
+            </p>
+        </li>
+    </ul>
+
+</body>
+</html>
+<script type="text/javascript">
+function Close(elem){
+	elem.parentNode.style.display = 'none'
+}
+</script>

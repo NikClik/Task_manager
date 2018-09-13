@@ -1,0 +1,43 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+<style>
+    label{
+        margin-right: 2%;
+    }
+    input{
+        color: black;
+    }
+    button{
+        margin-top: 1%;
+        margin-right: 10%;
+        width: 20%;
+        background-color: white;
+        color: black;
+        border-radius: 0.4vw;
+        text-align: center;
+    }
+</style>
+<body style="background-color: black;">
+<img src="http://ourtaskmanager.com/images/our%20task%20manager%20%20logo.png" width="70%;" style="margin-left: 15%; margin-top: 5%;">
+    <p style="color: white; font-size: 1.2vw; text-align: center;">Приветствуем Вас в нашем прилоежении! Пожалуйста, пройдите процедуру регистрации.</p>
+    <form method="post" style="color:white; text-align: right; font-size: 1.3vw; margin-top: 3%;margin-right: 40%;">
+      {% csrf_token %}
+      {{ form.as_p }}
+    <div style="background-color: black; color: white; text-align: center;">
+        <ul>
+            {% for error in errors %}
+                <li>{{ error }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+      <button type="submit">Регистрация</button>
+    </form>
+    <p style="margin-top: 2%; width: 20%; margin-left: 40%; text-align: center;">Уже есть персональная учетная запись? Тогда возспользуйся <a href="location.href = '{% url 'login' %}">входом</a> для входа в пресональный кабинет</p>
+</body>
+</html>

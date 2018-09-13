@@ -1,0 +1,49 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" style="width: 100%; height: 100%; background: black">
+<head>
+    <meta charset="UTF-8">
+    <title>План на день</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'css/main_page.css' %}">
+</head>
+<style>
+    label{
+        color: white;
+    }
+    input{
+        color: black;
+    }
+    select{
+        color: black;
+    }
+    button{
+        color: black;
+    }
+</style>
+<body style="width: 100%; height: 80%; color: white; background: black; font-family: 'Franklin Gothic Medium';">
+    <img src="http://ourtaskmanager.com/images/our%20task%20manager%20%20logo.png" width="25%;" style="margin-right: 3%; margin-top: 2%; float: right;">
+
+    {% include 'menu.html' %}
+
+    <div style=" width: 80%;padding: 1%; margin-left: 1%; margin-right: 4%; margin-top: 10%; font-size: 1.4vw;">
+        {% if tasks|length == 0 %}
+            <h3>На сегодня ты свободен)</h3>
+        {% else %}
+            {% for task in tasks %}
+            <div style="background-color: white; margin-right: 4%; padding: 2%; margin-bottom: 2%; float: left; border-radius: 0.2vw; width: 48%;" >
+                    <label style="margin-right: 10%; width: 100%;"><a href="{% url 'look_task_td' pk=task.id %}" style="color: red;">{{ task.header }}</a></label>
+{#                    <label style="margin-right: 10%; color: black; width: 100%;">{{ task. }}</label>#}
+{#                    <label style="margin-right: 10%; color: black; width: 100%;">{{ task }}</label>#}
+{#                    <label style="margin-right: 20%; color: black;  width: 100%;">{{ task }}</label>#}
+                <button onclick="location.href = '{% url 'change_status_of_task' pk=task.id status='Выполнено' %}'" style="width: 30%; color: black; margin-top: 2%;">Изменить статус на "Выполнено"</button>
+                <button onclick="location.href = '{% url 'change_status_of_task' pk=task.id status='В процессе выполнения' %}'" style="width: 30%; color: black;">Изменить статус на "В процессе выполнения"</button>
+                <button onclick="location.href = '{% url 'change_status_of_task' pk=task.id status='Не выполнено' %}'" style="width: 30%; color: black;">Изменить статус на "Не выполнено"</button>
+            </div>
+            {% endfor %}
+        {% endif %}
+    </div>
+</body>
+</html>
